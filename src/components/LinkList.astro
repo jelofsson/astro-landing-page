@@ -1,0 +1,30 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  links: {
+    href: string;
+    title: string;
+    icon: string;
+  }[];
+}
+
+const { links } = Astro.props;
+---
+
+<div class="flex flex-col items-center justify-center lg:mt-10">
+  {
+    links.map(({ href, title, icon }) => (
+      <a
+        href={href}
+        class="w-full max-w-lg block relative bg-white shadow-xl overflow-hidden rounded-md
+         mx-auto mt-4 pr-4 font-semibold text-center xs:text-md lg:text-xl text-black drop-shadow-lg transform-gpu hover:scale-105 transition duration-700"
+      >
+        <div class="flex items-center justify-center">
+          <Icon class="w-8 h-8" name={icon} />
+          <span class="pl-4 pt-4 pb-4 leading-10">{title}</span>
+        </div>
+      </a>
+    ))
+  }
+</div>

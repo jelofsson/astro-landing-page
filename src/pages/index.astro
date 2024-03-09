@@ -1,0 +1,84 @@
+---
+import { Image } from 'astro:assets';
+import LinkList from "../components/LinkList.astro";
+import Paragraph from "../components/Paragraph.astro";
+import background from "../../public/background.jpg";
+import logo from "../../public/logo.png";
+
+const backgroundRepeat = false;
+const backgroundColor = "#000000";
+const siteUrl = "https://github.com/";
+const title = "My Landingpage";
+const description = "Build fast websites, faster. Astro is a new kind of site builder for the modern web. Lightning-fast performance meets powerful developer experience.";
+const links = [
+  {
+    icon: "fa6-brands:discord",
+    href: "#",
+    title: "Join the community",
+  },
+  {
+    icon: "fa6-brands:x-twitter",
+    href: "#",
+    title: "Follow us on X",
+  },
+];
+---
+
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta name="color-scheme" content="light only" />
+    <meta property="og:site_name" content={title} />
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={logo.src} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content={logo.width.toString()} />
+    <meta property="og:image:height" content={logo.height.toString()} />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href={siteUrl} />
+    <link rel="icon" href="/favicon.svg" />
+  </head>
+  <body>
+    <main
+      class:list={['flex', 'min-h-screen', {'bg-no-repeat': !backgroundRepeat }, 'sm:bg-center', 'sm:items-center']}
+      style={{ backgroundImage: `url(${background.src})`, backgroundColor: backgroundColor }}
+    >
+      <div class="w-full">
+        <div class="sm:pb-16 sm:pt-8">
+          <div class="backdrop-blur-lg">
+            <div class="relative sm:overflow-hidden bg-[#ffffff] bg-opacity-75">
+              <div
+                class="lg:pb-24 relative px-4 pb-8 sm:px-6 sm:pb-14 lg:px-8 pt-2 lg:pt-8"
+              >
+                <Image
+                  class="rounded-full w-[100px] lg:w-[200px] mx-auto drop-shadow-md"
+                  alt="broccoli-bros"
+                  loading="eager"
+                  src={logo}
+                />
+                <h1
+                  class="text-center font-extrabold tracking-tight text-2xl md:text-5xl lg:text-8xl text-black block drop-shadow-md"
+                >
+                  {title}
+                </h1>
+                <Paragraph text={description} />
+                <LinkList links={links} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
